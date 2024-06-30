@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int choice, pin, amount, balance = 5000;
+    int FirstTime = 1;
+
+    printf("Welcome to the Nirvana Bank ATM\n");
+    printf("please insert your card\n");
+
+    if (FirstTime)
+    {
+        printf("Is this your first time using this ATM? (1 for yes, 0 for no): ");
+        scanf("%d", &pin);
+        if (pin == 1)
+        {
+            printf("please create a new pin: ");
+            scanf("%d", &pin);
+            printf("Your PIN has been created successfully.\n");
+            FirstTime = 0; // Set FirstTime to 0 after the first setup
+        }
+    }
+
+    while (1)
+    {
+        printf("please enter your pin: ");
+        scanf("%d", &pin);
+
+        if (pin != 1234)
+        {
+            printf("Invalid PIN. Please try again.\n");
+            continue;
+        }
+
+        printf("Welcome to your account\n");
+        printf("please select an option\n");
+        printf("1. check balance\n");
+        printf("2. withdraw\n");
+        printf("3. exit\n");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Your current balance is: %d\n", balance);
+            break;
+        case 2:
+            printf("please enter the amount you want to withdraw: ");
+            scanf("%d", &amount);
+
+            if (amount > balance)
+            {
+                printf("Insufficient fund.\n");
+            }
+            else
+            {
+                balance -= amount; // Deduct amount from balance
+                printf("Please collect your cash.\n");
+                printf("Your current balance is: %d\n", balance);
+            }
+            break;
+        case 3:
+            printf("Thank you for using the ATM\n");
+            printf("Your current balance is: %d\n", balance);
+            return 0;
+        default:
+            printf("Invalid option. Please try again.\n");
+            break;
+        }
+    }
+
+    return 0;
+}
